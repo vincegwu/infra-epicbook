@@ -70,6 +70,12 @@ stages:
             --scope "/subscriptions/$(SubscriptionId)/resourceGroups/$(ResourceGroup)/providers/Microsoft.Storage/storageAccounts/$(StorageAccountName)" \
             || echo "Blob Data Contributor role assignment may already exist"
 
+          az role assignment create \
+            --assignee $servicePrincipalId \
+            --role "Storage Account Contributor" \
+            --scope "/subscriptions/$(SubscriptionId)/resourceGroups/$(ResourceGroup)/providers/Microsoft.Storage/storageAccounts/$(StorageAccountName)" \
+            || echo "Storage Account Contributor role may already exist"
+
 
     # ✅ Run Terraform properly (no double 'cd')
     - task: AzureCLI@2
