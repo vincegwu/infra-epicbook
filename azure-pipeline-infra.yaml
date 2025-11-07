@@ -27,9 +27,9 @@ stages:
         mkdir -p ~/.ssh
         cp $(download_ssh_key.secureFilePath) ~/.ssh/id_rsa.pub
 
-        cp $(download_ssh_key.secureFilePath) terraform/modules/compute/id_rsa.pub
+        cp $(download_ssh_key.secureFilePath) infra-epicbook/modules/compute/id_rsa.pub
         echo "Listing contents of terraform/modules/compute/"
-        ls -al terraform/modules/compute/
+        ls -al infra-epicbook/modules/compute/
       displayName: 'Extract SSH Public Key for Terraform'
 
 
