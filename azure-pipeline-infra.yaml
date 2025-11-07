@@ -50,6 +50,29 @@ stages:
           curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
           az --version
 
+    - task: AzureCLI@2
+      displayName: 'Grant Storage Account Access to Service Principal'
+      inputs:
+        azureSubscription: 'epicbook-service'  # your Azure DevOps service connection
+        scriptType: bash
+        scriptLocation: inlineScript
+        inlineScript: |
+          echo "Assigning roles to Service Principal..."
+
+          # Use variables set in the pipeline
+          # $(SubscriptionId), $(ResourceGroup), $(StorageAccountName)
+          az role assignment create \
+            --assignee "$(servicePrincipalId)" \
+            --role "Reader" \
+            --scope "/subscriptions/$(SubscriptionId)/resourceGroups/$(ResourceGroup)/providers/Microsoft.Storage/storageAccounts/$(StorageAccountName)" \
+            || echo "Reader role assignment may already exist"
+
+          az role assignment create \
+            --assignee "$(servicePrincipalId)" \
+            --role "Storage Blob Data Contributor" \
+            --scope "/subscriptions/$(SubscriptionId)/resourceGroups/$(ResourceGroup)/providers/Microsoft.Storage/storageAccounts/$(StorageAccountName)" \
+            || echo "Blob Data Contributor role assignment may already exist"
+
 
     # ✅ Run Terraform properly (no double 'cd')
     - task: AzureCLI@2
