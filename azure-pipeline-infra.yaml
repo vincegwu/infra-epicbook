@@ -1,7 +1,4 @@
 trigger:
-  paths:
-    include:
-      - infra-epicbook/**
   branches:
     include:
       - main
