@@ -61,8 +61,14 @@ stages:
           set -e
           echo "##[group]Terraform Init/Plan/Apply"
 
+          export ARM_SUBSCRIPTION_ID=$(SubscriptionId)
+          export ARM_CLIENT_ID=$(servicePrincipalAppId)
+          export ARM_CLIENT_SECRET=$(servicePrincipalSecret)  # secret pipeline variable
+          export ARM_TENANT_ID=$(tenantId)                    # secret pipeline variable
+
           terraform init -input=false
           terraform plan -input=false -var-file=envs/dev.tfvars -out=tfplan
           terraform apply -input=false -auto-approve tfplan
 
           echo "##[endgroup]"
+
