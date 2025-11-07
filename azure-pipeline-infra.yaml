@@ -47,7 +47,7 @@ stages:
     - task: AzureCLI@2
       displayName: 'Terraform Init/Plan/Apply'
       inputs:
-        azureSubscription: 'tf-bookreview'
+        azureSubscription: 'epicbook-service'
         scriptType: bash
         scriptLocation: inlineScript
         workingDirectory: $(System.DefaultWorkingDirectory)/terraform
