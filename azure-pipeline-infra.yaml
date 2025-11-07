@@ -50,13 +50,6 @@ stages:
           curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
           az --version
 
-    - script: |
-        echo "🔍 Checking what files exist..."
-        echo "Current working directory: $(System.DefaultWorkingDirectory)"
-        echo "Listing infra-epicbook directory:"
-        ls -R $(System.DefaultWorkingDirectory)/infra-epicbook
-      displayName: 'Debug: List Terraform files'
-
 
     # ✅ Run Terraform properly (no double 'cd')
     - task: AzureCLI@2
@@ -65,13 +58,13 @@ stages:
         azureSubscription: 'epicbook-service'
         scriptType: bash
         scriptLocation: inlineScript
-        workingDirectory: $(System.DefaultWorkingDirectory)/infra-epicbook
+        workingDirectory: $(System.DefaultWorkingDirectory)
         inlineScript: |
-          set -e   # Stop script if any command fails
+          set -e
           echo "##[group]Terraform Init/Plan/Apply"
 
           terraform init -input=false
-          terraform plan -input=false -var-file=envs/dev.tfvars
-          terraform apply -input=false -auto-approve -var-file=envs/dev.tfvars
+          terraform plan -input=false -var-file=envs/dev.tfvars -out=tfplan
+          terraform apply -input=false -auto-approve tfplan
 
           echo "##[endgroup]"
