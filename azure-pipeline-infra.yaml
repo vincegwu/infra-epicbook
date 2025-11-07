@@ -57,13 +57,13 @@ stages:
         azureSubscription: 'epicbook-service'
         scriptType: bash
         scriptLocation: inlineScript
-        workingDirectory: $(System.DefaultWorkingDirectory)/terraform
+        workingDirectory: $(System.DefaultWorkingDirectory)/infra-epicbook
         inlineScript: |
           set -e   # Stop script if any command fails
           echo "##[group]Terraform Init/Plan/Apply"
 
           terraform init -input=false
-          terraform plan -input=false -var-file="envs/dev.tfvars"
-          terraform apply -input=false -auto-approve -var-file="envs/dev.tfvars"
+          terraform plan -input=false 
+          terraform apply -input=false -auto-approve
 
           echo "##[endgroup]"
