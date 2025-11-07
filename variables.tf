@@ -9,6 +9,12 @@ variable "resource_group_name" {
   type        = string
 }
 
+variable "storage_account_key" {
+  description = "Storage Account access key for Terraform backend"
+  type        = string
+  sensitive   = true
+}
+
 variable "admin_username" {
   description = "Admin user for VM"
   type        = string
