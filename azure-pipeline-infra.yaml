@@ -24,14 +24,25 @@ stages:
     - script: |
         echo "Copying SSH public key into Terraform module"
 
+        # Ensure SSH folder exists in agent
         mkdir -p ~/.ssh
         cp $(download_ssh_key.secureFilePath) ~/.ssh/id_rsa.pub
 
-        cp $(download_ssh_key.secureFilePath) terraform/modules/compute/id_rsa.pub
-        echo "Listing contents of terraform/modules/compute/"
-        ls -al terraform/modules/compute/
+        # Ensure the Terraform compute module folder exists in project
+        mkdir -p infra-epicbook/modules/compute
+
+        # Copy the SSH public key into compute module
+        cp $(download_ssh_key.secureFilePath) infra-epicbook/modules/compute/id_rsa.pub
+
+        # Confirm the file is in place
+        echo "Listing contents of infra-epicbook/modules/compute/"
+        ls -al infra-epicbook/modules/compute/
       displayName: 'Extract SSH Public Key for Terraform'
 
+    - task: TerraformInstaller@1
+      displayName: 'Install Terraform'
+      inputs:
+      terraformVersion: '1.13.5'
 
 
     # ✅ Install Azure CLI (good since you're using AzureCLI@2)
