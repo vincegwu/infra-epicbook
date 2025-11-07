@@ -1,0 +1,7 @@
+location = "australiaeast"
+resource_group_name = "epicbook-rg"
+admin_username = "azureuser"
+vm_size = "Standard_B1s"
+ssh_public_key = "~/.ssh/id_rsa.pub"
+db_username = "epicuser"
+db_password = "Berry123!@"     
