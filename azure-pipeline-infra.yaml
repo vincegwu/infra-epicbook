@@ -45,6 +45,7 @@ stages:
       terraformVersion: '1.13.5'
 
 
+
     # ✅ Install Azure CLI (good since you're using AzureCLI@2)
     - task: Bash@3
       displayName: 'Install Azure CLI'
@@ -58,7 +59,7 @@ stages:
     - task: AzureCLI@2
       displayName: 'Terraform Init/Plan/Apply'
       inputs:
-        azureSubscription: 'tf-bookreview'
+        azureSubscription: 'epicbook-service'
         scriptType: bash
         scriptLocation: inlineScript
         workingDirectory: $(System.DefaultWorkingDirectory)/terraform
