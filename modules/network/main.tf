@@ -1,5 +1,4 @@
 
-
 resource "azurerm_virtual_network" "vnet" {
   name                = "epicbook-vnet"
   location            = var.location
