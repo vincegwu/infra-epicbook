@@ -6,7 +6,7 @@ variable "resource_group_name" {
 variable "location" {
   description = "Azure region"
   type        = string
-  default     = "australiaeast"  # change as needed
+  default     = "australiaeast"  # change as you needed
 }
 
 variable "admin_username" {
