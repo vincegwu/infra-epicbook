@@ -5,6 +5,8 @@ resource "azurerm_public_ip" "app_pip" {
   resource_group_name = var.resource_group_name
   allocation_method   = "Static"
   sku                 = var.public_ip_sku
+
+
 }
 
 resource "azurerm_network_interface" "app_nic" {
