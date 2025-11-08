@@ -1,12 +1,12 @@
+variable "resource_group_name" {
+  description = "Resource Group for resources"
+  type        = string
+}
+
 variable "location" {
   description = "Azure region"
   type        = string
   default     = "australiaeast"  # change as needed
-}
-
-variable "resource_group_name" {
-  description = "Resource Group for resources"
-  type        = string
 }
 
 variable "admin_username" {
