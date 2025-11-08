@@ -7,8 +7,6 @@ module "network" {
   source              = "./modules/network"
   resource_group_name = var.resource_group_name
   location            = var.location
-  #my_ip               = "102.90.82.83/32"            # <-- replace with your public IP
-
 }
 
 module "database" {
