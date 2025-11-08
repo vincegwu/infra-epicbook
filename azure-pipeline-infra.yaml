@@ -38,7 +38,7 @@ stages:
 
 
 
-    # ✅ Install Azure CLI (Ok since you're using AzureCLI@2)
+    # ✅ Install Azure CLI (Ok  using AzureCLI@2)
     - task: Bash@3
       displayName: 'Install Azure CLI'
       inputs:
