@@ -46,13 +46,6 @@ variable "public_ip_sku" {
   default     = "Standard"
 }
 
-variable "my_ip" {
-  description = "Your public IP address with /32 suffix"
-  type        = string
-  default     = "102.90.102.49/32"   # <-- replace with your public IP
-}
-
-
 variable "admin_password" {
   description = "Admin password for MySQL Flexible Server"
   type        = string
