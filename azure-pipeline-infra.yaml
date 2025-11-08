@@ -49,7 +49,7 @@ stages:
 
   
 
-    # ✅ Run Terraform properly (no double 'cd')
+    # ✅ Run Terraform properly (
     - task: AzureCLI@2
       displayName: 'Terraform Init/Plan/Apply'
       inputs:
